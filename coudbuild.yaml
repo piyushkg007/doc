@@ -1,0 +1,7 @@
+steps:
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['clone', 'https://github.com/piyushkg007/doc.git', '/workspace/repo']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/prj-qa-workshop-poc/backend-service:$COMMIT_SHA', '/workspace/repo/doc/backend']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/prj-qa-workshop-poc/backend-service:$COMMIT_SHA']
